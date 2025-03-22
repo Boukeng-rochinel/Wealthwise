@@ -1,5 +1,4 @@
-const { User } = require("../models/user");
-const mongoose = require("mongoose"); // Import mongoose for validation
+const { User } = require("../models/models");
 
 const getUsers = async (req, res) => {
   try {
@@ -10,7 +9,7 @@ const getUsers = async (req, res) => {
     });
   } catch {
     return res.status(500).json({
-      message: "Error retriving user",
+      message: "Error retrieving user",
     });
   }
 };
@@ -19,9 +18,6 @@ const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const deletedUser = await User.findByIdAndDelete(userId);
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-      return res.status(400).json({ message: "Invalid user ID" });
-    }
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }

@@ -1,7 +1,7 @@
 // authController.js
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { User } = require("../models/user");
+const { User } = require("../models/models");
 const Dotenv = require("dotenv");
 
 Dotenv.config();
@@ -21,9 +21,13 @@ const signUp = async (req, res) => {
     await newUser.save();
 
     // Create JWT token
-    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { userId: newUser._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }``
+    );
     res.status(201).json({ message: "User created successfully", token });
   } catch (error) {
     res.status(500).json({ message: "Error signing up", error: error.message });
