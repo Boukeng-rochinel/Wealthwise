@@ -5,7 +5,7 @@ import './App.css'
 import Login from './components/Login';
 import Home from './components/Home';
 import Signup from './components/Signup';
-import Budget from './components/Budgeting';
+import Budgeting from './components/Budget';
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   <Route path='/Login' element = {<Login/>}/>
   <Route path='/Home' element = {<Home/>}/>
   <Route path='/Signup' element = {<Signup/>}/>
-  <Route path='/Budgeting' element = {<Budget/>}/>
+  <Route path='/Budget' element = {<Budgeting/>}/>
 </Routes>
 
       </BrowserRouter>
