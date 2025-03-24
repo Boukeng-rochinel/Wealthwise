@@ -8,6 +8,7 @@ const users = require("./Routes/usersRoutes.js");
 const budgets = require("./Routes/budgetRoutes.js");
 const savings = require("./Routes/savingsRoutes.js");
 const category = require("./Routes/categoryRoutes.js");
+const expense = require("./Routes/expenseRoute.js");
 
 Dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/", authentication);
+app.use("/expense", expense);
 app.use("/", category);
 app.use("/savings", savings);
 app.use("/users", users);

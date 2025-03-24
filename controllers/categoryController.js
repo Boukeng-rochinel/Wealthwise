@@ -158,7 +158,10 @@ const updateCategory = async (req, res) => {
     //Update the category
     const updatedcategory = await Category.findByIdAndUpdate(
       { _id: categoryId },
-      req.body,
+      {
+        name,
+        allocatedAmount,
+      },
       {
         new: true,
         runValidators: true,
