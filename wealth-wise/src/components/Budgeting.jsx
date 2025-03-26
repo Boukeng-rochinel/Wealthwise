@@ -2,12 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Budget() {
-  const [budget, setBudget] = useState("");
-  const [totalExpenses, setTotalExpenses] = useState("");
-  const [expenses, setExpenses] = useState("");
-  const [allocated, setAllocated] = useState("");
-
-function Budget(){
   const [budgets, setBudgets] = useState([]);
   const [newBudget, setNewBudget] = useState({ name: "", amount: 0 });
   const [selectedBudget, setSelectedBudget] = useState(null);
@@ -68,8 +62,13 @@ function Budget(){
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`/api/budgets/${selectedBudget.id}`, selectedBudget);
-      setBudgets(budgets.map(b => (b.id === selectedBudget.id ? response.data : b)));
+      const response = await axios.put(
+        `/api/budgets/${selectedBudget.id}`,
+        selectedBudget
+      );
+      setBudgets(
+        budgets.map((b) => (b.id === selectedBudget.id ? response.data : b))
+      );
       setSelectedBudget(null); // Reset selected budget
     } catch (error) {
       setError("Failed to update budget. Please try again later.");
@@ -85,7 +84,7 @@ function Budget(){
     setError(null);
     try {
       await axios.delete(`/api/budgets/${id}`);
-      setBudgets(budgets.filter(b => b.id !== id));
+      setBudgets(budgets.filter((b) => b.id !== id));
     } catch (error) {
       setError("Failed to delete budget. Please try again later.");
       console.error("Error deleting budget:", error);
@@ -127,7 +126,9 @@ function Budget(){
           type="number"
           placeholder="Amount"
           value={newBudget.amount}
-          onChange={(e) => setNewBudget({ ...newBudget, amount: parseFloat(e.target.value) })}
+          onChange={(e) =>
+            setNewBudget({ ...newBudget, amount: parseFloat(e.target.value) })
+          }
         />
         <button onClick={createBudget} disabled={loading}>
           Create Budget
@@ -141,10 +142,16 @@ function Budget(){
           {budgets.map((budget) => (
             <li key={budget.id}>
               {budget.name} - ${budget.amount}
-              <button onClick={() => setSelectedBudget(budget)} disabled={loading}>
+              <button
+                onClick={() => setSelectedBudget(budget)}
+                disabled={loading}
+              >
                 Edit
               </button>
-              <button onClick={() => deleteBudget(budget.id)} disabled={loading}>
+              <button
+                onClick={() => deleteBudget(budget.id)}
+                disabled={loading}
+              >
                 Delete
               </button>
             </li>
@@ -159,12 +166,19 @@ function Budget(){
           <input
             type="text"
             value={selectedBudget.name}
-            onChange={(e) => setSelectedBudget({ ...selectedBudget, name: e.target.value })}
+            onChange={(e) =>
+              setSelectedBudget({ ...selectedBudget, name: e.target.value })
+            }
           />
           <input
             type="number"
             value={selectedBudget.amount}
-            onChange={(e) => setSelectedBudget({ ...selectedBudget, amount: parseFloat(e.target.value) })}
+            onChange={(e) =>
+              setSelectedBudget({
+                ...selectedBudget,
+                amount: parseFloat(e.target.value),
+              })
+            }
           />
           <button onClick={updateBudget} disabled={loading}>
             Update Budget
@@ -202,6 +216,6 @@ function Budget(){
       </div>
     </div>
   );
-};
+}
 
 export default Budget;
