@@ -9,6 +9,7 @@ const budgets = require("./Routes/budgetRoutes.js");
 const savings = require("./Routes/savingsRoutes.js");
 const category = require("./Routes/categoryRoutes.js");
 const expense = require("./Routes/expenseRoute.js");
+const course = require("./Routes/courseRoutes.js");
 
 Dotenv.config();
 
@@ -24,5 +25,6 @@ app.use("/", category);
 app.use("/savings", savings);
 app.use("/users", users);
 app.use("/budgets", budgets);
+app.use("/", course);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

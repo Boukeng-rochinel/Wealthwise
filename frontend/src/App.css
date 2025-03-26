@@ -1,0 +1,35 @@
+.FooterContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  background-color: rgb(236, 236, 236);
+  color: black;
+}
+
+.Footeritems {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.full-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 300px;
+  width: 500px; /* Full width */
+  height: 50vh; /* Full height */
+  background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+  display: none;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 2s ease, transform 3s ease;
+  z-index: 1050; /* Ensure it appears above everything */
+  color: black;
+}
+
+.nav-item.dropdown:hover .full-dropdown {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}

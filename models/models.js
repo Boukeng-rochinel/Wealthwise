@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  username: { type: String, required: true, unique: true },
+  username: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   firstName: { type: String },
@@ -98,6 +98,22 @@ const savingsAnalyticsSchema = new Schema(
   { timestamps: true }
 );
 
+const courseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  videoPath: {
+    type: String,
+    required: true, // Ensures video path is always provided when creating a course
+  },
+});
+
+const Course = mongoose.model("Course", courseSchema);
 const User = mongoose.model("User", userSchema);
 const Task = mongoose.model("Task", taskSchema);
 const Budget = mongoose.model("Budget", budgetSchema);
@@ -124,4 +140,5 @@ module.exports = {
   Contribution,
   BudgetAnalytics,
   SavingsAnalytics,
+  Course,
 };
